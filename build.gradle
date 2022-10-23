@@ -1,0 +1,74 @@
+plugins {
+    id("groovy") 
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.6.2"
+    id("io.micronaut.test-resources") version "3.6.2"
+}
+
+version = "0.1"
+group = "org.hbr"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-jackson-databind")
+    implementation("io.micronaut:micronaut-management")
+    implementation("io.micronaut.aws:micronaut-aws-sdk-v2")
+    implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
+    implementation("io.micronaut.flyway:micronaut-flyway")
+    implementation("io.micronaut.groovy:micronaut-hibernate-gorm")
+    implementation("io.micronaut.groovy:micronaut-runtime-groovy")
+    implementation("io.micronaut.micrometer:micronaut-micrometer-core")
+    implementation("io.micronaut.micrometer:micronaut-micrometer-registry-new-relic")
+    implementation("io.micronaut.microstream:micronaut-microstream")
+    implementation("io.micronaut.microstream:micronaut-microstream-annotations")
+    implementation("io.micronaut.reactor:micronaut-reactor")
+    implementation("io.micronaut.reactor:micronaut-reactor-http-client")
+    implementation("io.micronaut.redis:micronaut-redis-lettuce")
+    implementation("io.micronaut.security:micronaut-security")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation("io.micronaut.security:micronaut-security-oauth2")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation("io.swagger.core.v3:swagger-annotations")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    compileOnly("io.micronaut:micronaut-http-validation")
+    compileOnly("io.micronaut.microstream:micronaut-microstream-annotations")
+    compileOnly("io.micronaut.openapi:micronaut-openapi")
+    compileOnly("io.micronaut.security:micronaut-security-annotations")
+    compileOnly("io.micronaut.serde:micronaut-serde-processor")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly("mysql:mysql-connector-java")
+    runtimeOnly("org.apache.tomcat:tomcat-jdbc")
+    runtimeOnly("org.flywaydb:flyway-mysql")
+    implementation("io.micronaut:micronaut-validation")
+
+}
+
+
+application {
+    mainClass.set("org.hbr.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
+}
+
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("org.hbr.*")
+    }
+    testResources {
+        additionalModules.add("jdbc-mysql")
+    }
+}
+
+
+

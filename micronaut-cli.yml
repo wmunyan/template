@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: org.hbr
+testFramework: junit
+sourceLanguage: groovy
+buildTool: gradle
+features: [annotation-api, app-name, aws-v2-sdk, flyway, gradle, groovy, groovy-application, hibernate-gorm, hibernate-validator, http-client, jackson-databind, jdbc-hikari, junit, logback, management, micrometer, micrometer-new-relic, micronaut-build, microstream, mysql, netty-server, openapi, reactor, reactor-http-client, readme, redis-lettuce, security, security-annotations, security-jwt, security-oauth2, serialization-jackson, shade, swagger-ui, test-resources, yaml]
